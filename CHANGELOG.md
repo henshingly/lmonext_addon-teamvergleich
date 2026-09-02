@@ -7,9 +7,14 @@ Teams bei Umbenennung/Fusion/Abspaltung (siehe Team-Verknüpfungen in
 Administrator → Teams, bleibt Core-Funktion, unabhängig von diesem Addon).
 
 Stammt aus dem LMOnext-Core (vorher src/Liga/HeadToHeadTrait.php, direkt in
-LigaService eingemischt) und wurde als eigenständiges Addon ausgegliedert,
-damit es installationsweit über Administrator → Einstellungen → Optionen
-→ Anzeigen/Darstellung sichtbar aktiviert/deaktiviert werden kann.
+LigaService eingemischt) und wurde als eigenständiges Addon ausgegliedert
+(Beitrag: Nutzerwunsch), damit es installationsweit über Administrator →
+Einstellungen → Optionen → Anzeigen/Darstellung sichtbar aktiviert/
+deaktiviert werden kann.
+
+## Version 1.1.0
+
+- Eigene Sprachdateien ergänzt (addon/teamvergleich/lang/de.php + en.php). Bei genauerer Prüfung waren 8 der zuvor als "geteilt" eingestuften Sprachschlüssel doch addon-exklusiv (keine echte Verwendung außerhalb dieses Addons bzw. außerhalb von PdfExporter::exportH2hPdf(), das ohnehin nur bei aktivem teamvergleich-Addon erreichbar ist): liga_col_spieltag_long, liga_h2h_icon_title, liga_h2h_modal_title, liga_h2h_wins, liga_h2h_draw, liga_h2h_no_matches, liga_h2h_close, h2h_today_prefix - aus lang/frontend/*.php verschoben (siehe dortiger Core-Changelog-Eintrag 1.49.0). hooks_frontend.php ruft jetzt beim Laden explizit addonManager()->loadLanguages('teamvergleich') auf.
 
 ## Version 1.0.0
 

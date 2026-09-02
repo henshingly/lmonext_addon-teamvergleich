@@ -2,7 +2,7 @@
 /**
  * Project: LMOnext
  * Filename: addon/teamvergleich/hooks_frontend.php
- * Fileversion: 1.0.0
+ * Fileversion: 1.1.0
  *
  * PHP version 8.2
  *
@@ -38,6 +38,16 @@ declare(strict_types = 1);
 require_once __DIR__ . '/HeadToHead.php';
 
 use LMOnext\Addon\Teamvergleich\HeadToHead;
+
+// Eigene Sprachdateien laden (addon/teamvergleich/lang/de.php + en.php) -
+// siehe dortiger Docblock: Schlüssel, die ausschließlich von diesem Addon
+// (bzw. vom pdf-export-Addon nur innerhalb dessen H2H-PDF-Export) genutzt
+// werden, wurden aus lang/frontend/*.php hierher verschoben. Diese Datei
+// wird über frontend_handlers bei jedem Request geladen (siehe addon.json),
+// daher genügt ein einmaliger Aufruf hier.
+if (function_exists('addonManager')) {
+    \addonManager()->loadLanguages('teamvergleich');
+}
 
 registerHook('liga.h2h_matches', static function (array $data) : array {
     $data['matches'] = HeadToHead::getHeadToHeadMatches((int)$data['idA'], (int)$data['idB']);
